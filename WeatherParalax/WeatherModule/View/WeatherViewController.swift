@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MapKit
 
 protocol WeatherViewProtocol: AnyObject {
     func succes()
@@ -14,13 +15,22 @@ protocol WeatherViewProtocol: AnyObject {
 
 final class WeatherViewController: UIViewController {
 
+    // MARK: - IBOutlet
+//    @IBOutlet private weak var mapView: MKMapView!
+    @IBOutlet private weak var currentTempLabel: UILabel!
+    @IBOutlet private weak var weatherDescriptionLabel: UILabel!
+    @IBOutlet private weak var minTempLabel: UILabel!
+    @IBOutlet private weak var maxTempLabel: UILabel!
+    @IBOutlet private weak var airHumidityLabel: UILabel!
+    @IBOutlet private weak var windSpeedLabel: UILabel!
+
     var presenter: WeatherViewPresenterProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
+//        let initialLocation = CLLocation(latitude: 21.282778, longitude: -157.829444)
     }
-
 }
 
 // MARK: - Priavte methods

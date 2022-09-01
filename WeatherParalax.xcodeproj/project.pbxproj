@@ -26,6 +26,7 @@
 		52FEA5BA28BFDC5000046E78 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FEA5B928BFDC5000046E78 /* UIImageViewExtension.swift */; };
 		52FEA5C228BFE8BA00046E78 /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FEA5C028BFE8B900046E78 /* CityTableViewCell.swift */; };
 		52FEA5C328BFE8BA00046E78 /* CityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52FEA5C128BFE8B900046E78 /* CityTableViewCell.xib */; };
+		52FEA5C828C0EEF600046E78 /* ParalaxMapScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FEA5C728C0EEF600046E78 /* ParalaxMapScrollView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		52FEA5B928BFDC5000046E78 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		52FEA5C028BFE8B900046E78 /* CityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewCell.swift; sourceTree = "<group>"; };
 		52FEA5C128BFE8B900046E78 /* CityTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityTableViewCell.xib; sourceTree = "<group>"; };
+		52FEA5C728C0EEF600046E78 /* ParalaxMapScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParalaxMapScrollView.swift; sourceTree = "<group>"; };
 		6BC12241843BA3B98F8DED05 /* Pods_WeatherParalax.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherParalax.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		93AAE105F1048000B5B41A11 /* Pods-WeatherParalax.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherParalax.release.xcconfig"; path = "Target Support Files/Pods-WeatherParalax/Pods-WeatherParalax.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -185,6 +187,7 @@
 			children = (
 				52FEA59C28BFC4A400046E78 /* WeatherViewController.swift */,
 				52FEA59D28BFC4A400046E78 /* WeatherViewController.xib */,
+				52FEA5C728C0EEF600046E78 /* ParalaxMapScrollView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				52A2DF3828BE7CC700ADEADE /* SceneDelegate.swift in Sources */,
 				52FEA59128BFA92600046E78 /* Weather.swift in Sources */,
 				52FEA5A528BFC5A300046E78 /* WeatherPresenter.swift in Sources */,
+				52FEA5C828C0EEF600046E78 /* ParalaxMapScrollView.swift in Sources */,
 				52FEA59E28BFC4A400046E78 /* WeatherViewController.swift in Sources */,
 				52FEA5A228BFC58B00046E78 /* CitiesPresenter.swift in Sources */,
 				52FEA59928BFC45F00046E78 /* CitiesViewController.swift in Sources */,
