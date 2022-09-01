@@ -9,7 +9,7 @@ import UIKit
 
 protocol Builder {
     static func createCitiesModule() -> UIViewController
-    static func createWeatherModule(with weather: Weather) -> UIViewController
+    static func createWeatherModule(with city: City?) -> UIViewController
 }
 
 class ModuleBuilder: Builder {
@@ -20,9 +20,9 @@ class ModuleBuilder: Builder {
         return viewController
     }
 
-    static func createWeatherModule(with weather: Weather) -> UIViewController {
+    static func createWeatherModule(with city: City?) -> UIViewController {
         let viewController = WeatherViewController()
-        let presenter = WeatherPresenter(view: viewController, with: weather)
+        let presenter = WeatherPresenter(view: viewController, with: city)
         viewController.presenter = presenter
         return viewController
     }

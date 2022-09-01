@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum ImageVariant: String {
+private enum ImageVariant: String {
     case even = "https://infotech.gov.ua/storage/img/Temp3.png"
     case odd = "https://infotech.gov.ua/storage/img/Temp1.png"
 }

@@ -8,16 +8,17 @@
 import UIKit
 
 protocol WeatherViewPresenterProtocol {
-    init(view: WeatherViewProtocol, with weather: Weather)
+    init(view: WeatherViewProtocol, with city: City?)
+    var cityName: String? { get }
 }
 
-class WeatherPresenter {
+final class WeatherPresenter {
     private weak var view: WeatherViewProtocol?
-    private var weather: Weather
+    private var city: City?
 
-    required init(view: WeatherViewProtocol, with weather: Weather) {
+    required init(view: WeatherViewProtocol, with city: City?) {
         self.view = view
-        self.weather = weather
+        self.city = city
         getWeather()
     }
 }
@@ -31,5 +32,7 @@ private extension WeatherPresenter {
 
 // MARK: - WeatherViewPresenterProtocol methods
 extension WeatherPresenter: WeatherViewPresenterProtocol {
-
+    var cityName: String? {
+        city?.name
+    }
 }

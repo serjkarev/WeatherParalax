@@ -12,15 +12,22 @@ protocol WeatherViewProtocol: AnyObject {
     func failure(title: String, description: String)
 }
 
-class WeatherViewController: UIViewController {
+final class WeatherViewController: UIViewController {
 
     var presenter: WeatherViewPresenterProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupNavBar()
     }
 
+}
+
+// MARK: - Priavte methods
+private extension WeatherViewController {
+    func setupNavBar() {
+        self.title = presenter?.cityName
+    }
 }
 
 // MARK: - WeatherViewProtocol methods
