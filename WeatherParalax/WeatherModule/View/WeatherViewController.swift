@@ -150,8 +150,6 @@ private extension WeatherViewController {
         labelsStackView = UIStackView()
         labelsStackView.translatesAutoresizingMaskIntoConstraints = false
         labelsStackView.axis = .horizontal
-        labelsStackView.distribution = .fillEqually
-        labelsStackView.spacing = 2
         
         paramLabelsStackView = UIStackView()
         paramLabelsStackView.translatesAutoresizingMaskIntoConstraints = false
