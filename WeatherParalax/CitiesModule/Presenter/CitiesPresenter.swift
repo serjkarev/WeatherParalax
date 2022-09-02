@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Alamofire
 
 protocol CitiesViewPresenterProtocol {
     init(view: CitiesViewProtocol)

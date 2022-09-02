@@ -7,7 +7,6 @@ target 'WeatherParalax' do
 
   # Pods for WeatherParalax
 
-  pod 'Alamofire'
   pod 'Kingfisher'
 
 end

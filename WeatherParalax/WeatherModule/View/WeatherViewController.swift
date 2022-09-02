@@ -19,7 +19,6 @@ final class WeatherViewController: UIViewController {
     
     // MARK: - Constants
     struct Constants {
-//        static fileprivate let headerHeight: CGFloat = UIScreen.main.bounds.height / 3
         static fileprivate let headerHeight: CGFloat = UIApplication.shared.windows[0].safeAreaLayoutGuide.layoutFrame.height / 3
     }
 
