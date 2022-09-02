@@ -9,6 +9,7 @@ import UIKit
 
 protocol WeatherViewProtocol: AnyObject {
     func succesMapDownload()
+    func succesWeatherDownload()
     func failure(title: String, description: String)
 }
 
@@ -56,11 +57,6 @@ final class WeatherViewController: UIViewController {
         addUIElements()
         arrangeConstraints()
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-//        headerImageView.image = presenter?.cityImage
-    }
 }
 
 // MARK: - UIScrollView delegate methods
@@ -87,6 +83,15 @@ extension WeatherViewController: WeatherViewProtocol {
         headerImageView.image = presenter?.cityImage
     }
 
+    func succesWeatherDownload() {
+        currTempLabel.text = presenter?.currnetTemperature
+        descriptionLabel.text = presenter?.weatherDescription
+        minTempValueLabel.text = presenter?.minTemperature
+        maxTempValueLabel.text = presenter?.maxTemperature
+        airHumidityValueLabel.text = presenter?.airHumidity
+        windSpeedValueLabel.text = presenter?.windSpeed
+    }
+    
     func failure(title: String, description: String) {
         let alert = UIAlertController(title: title, message: description, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
@@ -146,7 +151,7 @@ private extension WeatherViewController {
         labelsStackView = UIStackView()
         labelsStackView.translatesAutoresizingMaskIntoConstraints = false
         labelsStackView.axis = .horizontal
-        labelsStackView.distribution = .fillProportionally
+        labelsStackView.distribution = .fillEqually
         labelsStackView.spacing = 2
         
         paramLabelsStackView = UIStackView()
@@ -165,13 +170,11 @@ private extension WeatherViewController {
         currTempLabel.translatesAutoresizingMaskIntoConstraints = false
         currTempLabel.textAlignment = .center
         currTempLabel.font = UIFont.boldSystemFont(ofSize: 60.0)
-        currTempLabel.text = "32"
         
         descriptionLabel = UILabel()
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.textAlignment = .center
         descriptionLabel.font = UIFont.boldSystemFont(ofSize: 30.0)
-        descriptionLabel.text = "description"
         
         minTempLabel = UILabel()
         minTempLabel.translatesAutoresizingMaskIntoConstraints = false

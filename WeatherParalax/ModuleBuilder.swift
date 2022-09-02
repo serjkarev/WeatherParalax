@@ -22,7 +22,8 @@ class ModuleBuilder: Builder {
 
     static func createWeatherModule(with city: City?) -> UIViewController {
         let viewController = WeatherViewController()
-        let presenter = WeatherPresenter(view: viewController, with: city)
+        let networkService = NetworkSevice()
+        let presenter = WeatherPresenter(view: viewController,networkService: networkService, with: city)
         viewController.presenter = presenter
         return viewController
     }
