@@ -36,9 +36,10 @@
 		52A2DF3C28BE7CC700ADEADE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		52A2DF3E28BE7CC900ADEADE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		52A2DF4128BE7CC900ADEADE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		52A2DF4328BE7CC900ADEADE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52A2DF4328BE7CC900ADEADE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = WeatherParalax/Application/Info.plist; sourceTree = SOURCE_ROOT; };
 		52AAED4328BF9F2B000A5CAD /* city_list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = city_list.json; sourceTree = "<group>"; };
 		52AEF9F328C28FE4002BF877 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		52AEFA0C28C2A55D002BF877 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Config.xcconfig; path = WeatherParalax/Application/Config.xcconfig; sourceTree = SOURCE_ROOT; };
 		52FEA58D28BFA12600046E78 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		52FEA59028BFA92600046E78 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		52FEA59328BFC1E000046E78 /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
@@ -95,18 +96,13 @@
 		52A2DF3428BE7CC700ADEADE /* WeatherParalax */ = {
 			isa = PBXGroup;
 			children = (
+				52AEFA0028C2A116002BF877 /* Application */,
 				52FEA59328BFC1E000046E78 /* ModuleBuilder.swift */,
 				52AAED3F28BF9CBD000A5CAD /* NetworkLayer */,
 				52AAED4028BF9CDE000A5CAD /* CitiesModule */,
 				52AAED4128BF9D07000A5CAD /* WeatherModule */,
 				52FEA5B828BFDC3100046E78 /* Extensions */,
 				52AAED4228BF9EC4000A5CAD /* Resources */,
-				52A2DF3528BE7CC700ADEADE /* AppDelegate.swift */,
-				52A2DF3728BE7CC700ADEADE /* SceneDelegate.swift */,
-				52A2DF3B28BE7CC700ADEADE /* Main.storyboard */,
-				52A2DF3E28BE7CC900ADEADE /* Assets.xcassets */,
-				52A2DF4028BE7CC900ADEADE /* LaunchScreen.storyboard */,
-				52A2DF4328BE7CC900ADEADE /* Info.plist */,
 			);
 			path = WeatherParalax;
 			sourceTree = "<group>";
@@ -142,6 +138,9 @@
 		52AAED4228BF9EC4000A5CAD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				52A2DF3B28BE7CC700ADEADE /* Main.storyboard */,
+				52A2DF3E28BE7CC900ADEADE /* Assets.xcassets */,
+				52A2DF4028BE7CC900ADEADE /* LaunchScreen.storyboard */,
 				52AAED4328BF9F2B000A5CAD /* city_list.json */,
 			);
 			path = Resources;
@@ -195,6 +194,17 @@
 				52FEA59028BFA92600046E78 /* Weather.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		52AEFA0028C2A116002BF877 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				52A2DF4328BE7CC900ADEADE /* Info.plist */,
+				52A2DF3528BE7CC700ADEADE /* AppDelegate.swift */,
+				52A2DF3728BE7CC700ADEADE /* SceneDelegate.swift */,
+				52AEFA0C28C2A55D002BF877 /* Config.xcconfig */,
+			);
+			path = Application;
 			sourceTree = "<group>";
 		};
 		52FEA5B828BFDC3100046E78 /* Extensions */ = {
@@ -379,6 +389,7 @@
 /* Begin XCBuildConfiguration section */
 		52A2DF4428BE7CC900ADEADE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 52AEFA0C28C2A55D002BF877 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -440,6 +451,7 @@
 		};
 		52A2DF4528BE7CC900ADEADE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 52AEFA0C28C2A55D002BF877 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -500,7 +512,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = WeatherParalax/Info.plist;
+				INFOPLIST_FILE = WeatherParalax/Application/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -508,7 +520,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.skarev.WeatherParalax;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -519,7 +531,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = WeatherParalax/Info.plist;
+				INFOPLIST_FILE = WeatherParalax/Application/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -527,7 +539,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.skarev.WeatherParalax;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -11,6 +11,7 @@ Pods/
 
 ### macOS ###
 # General
+*.xcconfig
 .DS_Store
 .AppleDouble
 .LSOverride
