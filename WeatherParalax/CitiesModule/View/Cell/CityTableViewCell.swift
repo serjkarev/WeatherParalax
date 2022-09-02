@@ -7,15 +7,15 @@
 
 import UIKit
 
-private enum ImageVariant: String {
-    case even = "https://infotech.gov.ua/storage/img/Temp3.png"
-    case odd = "https://infotech.gov.ua/storage/img/Temp1.png"
-}
-
 final class CityTableViewCell: UITableViewCell {
 
     @IBOutlet private weak var cityImageView: UIImageView!
     @IBOutlet private weak var cityTitleLabel: UILabel!
+    
+    private enum ImageVariant: String {
+        case even = "https://infotech.gov.ua/storage/img/Temp3.png"
+        case odd = "https://infotech.gov.ua/storage/img/Temp1.png"
+    }
     
     var cityName: String? {
         didSet {

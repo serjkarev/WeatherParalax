@@ -15,7 +15,8 @@ protocol Builder {
 class ModuleBuilder: Builder {
     static func createCitiesModule() -> UIViewController {
         let viewController = CitiesViewController()
-        let presenter = CitiesPresenter(view: viewController)
+        let fileService = FileService()
+        let presenter = CitiesPresenter(view: viewController, fileService: fileService)
         viewController.presenter = presenter
         return viewController
     }
@@ -23,7 +24,8 @@ class ModuleBuilder: Builder {
     static func createWeatherModule(with city: City?) -> UIViewController {
         let viewController = WeatherViewController()
         let networkService = NetworkSevice()
-        let presenter = WeatherPresenter(view: viewController,networkService: networkService, with: city)
+        let mapService = MapService()
+        let presenter = WeatherPresenter(view: viewController, networkService: networkService, mapService: mapService, with: city)
         viewController.presenter = presenter
         return viewController
     }

@@ -12,7 +12,7 @@ protocol NetworkServiceProtocol {
 }
 
 final class NetworkSevice: NetworkServiceProtocol {
-    private let appId: String = Bundle.main.infoDictionary?["API_KEY"] as? String ?? "You need API_KEY"
+    private let appId: String = Bundle.main.infoDictionary?["API_KEY"] as? String ?? "You need .xcconfig file"
     
     func getWeatherFor(latitude: Double, longitude: Double, completion: @escaping (Result<Weather?, Error>) -> Void) {
         var urlComponents = URLComponents()
@@ -36,6 +36,7 @@ final class NetworkSevice: NetworkServiceProtocol {
                 completion(.success(obj))
             } catch {
                 completion(.failure(error))
+                debugPrint("Error: \(error.localizedDescription)")
             }
         }.resume()
     }

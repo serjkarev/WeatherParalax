@@ -8,7 +8,7 @@
 import UIKit
 
 protocol CitiesViewPresenterProtocol {
-    init(view: CitiesViewProtocol)
+    init(view: CitiesViewProtocol, fileService: FileServiceProtocol)
     var citiesCount: Int { get }
     var filteredCitiesCount: Int { get }
     func getCityFor(_ index: Int) -> City?
@@ -18,11 +18,13 @@ protocol CitiesViewPresenterProtocol {
 
 final class CitiesPresenter {
     private weak var view: CitiesViewProtocol?
+    private let fileService: FileServiceProtocol
     private var cities: [City]?
     private var filteredCities = [City]()
 
-    required init(view: CitiesViewProtocol) {
+    required init(view: CitiesViewProtocol, fileService: FileServiceProtocol) {
         self.view = view
+        self.fileService = fileService
         getCities()
     }
 }
@@ -30,14 +32,14 @@ final class CitiesPresenter {
 // MARK: - Private methods
 private extension CitiesPresenter {
     func getCities() {
-        guard let path = Bundle.main.path(forResource: "city_list", ofType: "json") else { return }
-        let url = URL(fileURLWithPath: path)
-        do {
-            let jsonData = try Data(contentsOf: url)
-            cities = try JSONDecoder().decode([City].self, from: jsonData)
-        } catch {
-            self.view?.failure(title: "Reading issue", description: error.localizedDescription)
-            debugPrint("Error: \(error.localizedDescription)")
+        fileService.getCitiesFrom(file: "city_list") { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let cities):
+                self.cities = cities
+            case .failure(let error):
+                self.view?.failure(title: "Reading issue", description: error.localizedDescription)
+            }
         }
     }
 }

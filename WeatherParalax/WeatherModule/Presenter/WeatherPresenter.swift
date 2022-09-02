@@ -6,10 +6,9 @@
 //
 
 import UIKit
-import MapKit
 
 protocol WeatherViewPresenterProtocol {
-    init(view: WeatherViewProtocol, networkService: NetworkServiceProtocol, with city: City?)
+    init(view: WeatherViewProtocol, networkService: NetworkServiceProtocol, mapService: MapServiceProtocol, with city: City?)
     var cityName: String? { get }
     var cityImage: UIImage? { get }
     var currnetTemperature: String? { get }
@@ -23,13 +22,15 @@ protocol WeatherViewPresenterProtocol {
 final class WeatherPresenter {
     private weak var view: WeatherViewProtocol?
     private let networkSevice: NetworkServiceProtocol
+    private let mapService: MapServiceProtocol
     private var city: City?
     private var weather: Weather?
     private var mapSnapShot: UIImage?
 
-    required init(view: WeatherViewProtocol, networkService: NetworkServiceProtocol, with city: City?) {
+    required init(view: WeatherViewProtocol, networkService: NetworkServiceProtocol, mapService: MapServiceProtocol, with city: City?) {
         self.view = view
         self.networkSevice = networkService
+        self.mapService = mapService
         self.city = city
         getWeather()
         getMapSnapshot()
@@ -56,33 +57,14 @@ private extension WeatherPresenter {
     
     func getMapSnapshot() {
         guard let lat = city?.coord.lat, let lon = city?.coord.lon else { return }
-        let options = MKMapSnapshotter.Options()
-        let center = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-        let annotation = LocationAnnotation(coordinate: center)
-        options.region = MKCoordinateRegion(center: center, span: MKCoordinateSpan())
-        options.size = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 3)//
-        options.scale = UIScreen.main.scale
-        options.mapType = .standard
-        
-        let snapshot = MKMapSnapshotter(options: options)
-        snapshot.start(with: .global()) { [weak self] (snapshot, error) in
+        mapService.getSnapshotFor(lat: lat, lon: lon) { [weak self] result in
             guard let self = self else { return }
-            guard error == nil, let snapshot = snapshot else { return }
-            
-            DispatchQueue.main.async {
-                UIGraphicsBeginImageContextWithOptions(snapshot.image.size, true, snapshot.image.scale)
-                snapshot.image.draw(at: .zero)
-                
-                let point = snapshot.point(for: center)
-                
-                let annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "ReuseID")
-                annotationView.contentMode = .scaleAspectFit
-                annotationView.bounds = CGRect(x: 0, y: 0, width: 40, height: 40)
-                annotationView.drawHierarchy(in: CGRect(x: point.x, y: point.y, width: annotationView.bounds.size.width, height: annotationView.bounds.size.height), afterScreenUpdates: true)
-                
-                let drawnImage = UIGraphicsGetImageFromCurrentImageContext()
-                self.mapSnapShot = drawnImage
+            switch result {
+            case .success(let snapshot):
+                self.mapSnapShot = snapshot
                 self.view?.succesMapDownload()
+            case .failure(let error):
+                self.view?.failure(title: "Can't load map snapshot", description: error.localizedDescription)
             }
         }
     }
@@ -126,13 +108,5 @@ extension WeatherPresenter: WeatherViewPresenterProtocol {
     var windSpeed: String? {
         guard let weather = weather else { return nil }
         return String(format: "%.0f", weather.wind.speed) + "m/s"
-    }
-}
-
-final class LocationAnnotation: NSObject, MKAnnotation {
-    var coordinate: CLLocationCoordinate2D
-    
-    init(coordinate: CLLocationCoordinate2D) {
-        self.coordinate = coordinate
     }
 }

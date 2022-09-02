@@ -108,7 +108,7 @@ private extension WeatherViewController {
         createScrollView()
         createHeaderContainerView()
         createHeaderImageView()
-        createcontainerView()
+        createContainerView()
         createStacks()
         createLabels()
     }
@@ -134,10 +134,10 @@ private extension WeatherViewController {
         headerImageView.clipsToBounds = true
     }
 
-    func createcontainerView() {
+    func createContainerView() {
         containerView = UIView()
+        headerContainerView.clipsToBounds = true
         containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.backgroundColor = .green
     }
 
     func createStacks() {
@@ -270,8 +270,8 @@ private extension WeatherViewController {
         
         let mainStackViewConstraints: [NSLayoutConstraint] = [
             mainStackView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 40),
-            mainStackView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10),
-            mainStackView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10),
+            mainStackView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 20),
+            mainStackView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -20),
             mainStackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -20)
         ]
         NSLayoutConstraint.activate(mainStackViewConstraints)
